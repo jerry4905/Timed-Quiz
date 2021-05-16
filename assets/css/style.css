@@ -5,6 +5,9 @@ header {
 main {
     background-color: rgb(233, 224, 224);
 }
+button {
+    background-color:rgb(150, 76, 168);
+}
 
 #start-modal {
     background-color: white;

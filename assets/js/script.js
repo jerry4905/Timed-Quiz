@@ -1,17 +1,17 @@
 // global variables
-let timeLeft = 60;
+let timeLeft = 5;
 //Store questions and answers in object array
 var questions = [
-    { q: "Inside which HTML element do we put the JavaScript?", a: "<script>" },
-    { q: "Where is the correct place to enter a javascript?", a: "both head and body" },
-    { q: "How do you create a function in JavaScript?", a: "function myFunction()" },
-    { q: "How do you call a function named 'myFunction'?", a: "myFunction()" },
-    { q: "How does a WHILE loop start?", a: "while (i <= 10)" },
-    { q: "A string is a number?", a: "False" },
-    { q: "How does a FOR loop start?", a: "for (i=0; i <=5; i++)" },
-    { q: "How can you add a comment in a JavaScript?", a: "//this will be a comment" },
-    { q: "JavaScript is the same as Java.", a: "False" },
-    { q: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?", a: "if(i !=5)" },
+    { q: "Inside which HTML element do we put the JavaScript?", a: ["<script>", "<HTML>", "<body>", "<insert>"] },
+    { q: "Where is the correct place to enter a javascript?", a: ["both head and body", "head", "body", "neither"] },
+    { q: "How do you create a function in JavaScript?", a: ["function myFunction()", "call function()", "// function", ".function"] },
+    { q: "How do you call a function named 'myFunction'?", a: ["myFunction()", "function myFunction()", "call function()", "// function"] },
+    { q: "How does a WHILE loop start?", a: ["while (i <= 10)", "for (i=0; i <=5; i++)", "for (i = 1)", "None"] },
+    { q: "A string is a number?", a: ["False", "true", "sometimes", "always"] },
+    { q: "How does a FOR loop start?", a: ["for (i=0; i <=5; i++)", "while (i <= 10)", "for (i = 1)", "None"] },
+    { q: "How can you add a comment in a JavaScript?", a: ["//this will be a comment", "<!--this will be a comment-->", "*this will be a comment", "this will be a comment"] },
+    { q: "JavaScript is the same as Java.", a: ["False", "true", "sometimes", "always"] },
+    { q: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?", a: ["if(i !=5)", "while (i <= 10)", "for (i = 1)", "None"] },
 ]
 
 // capture DOM El 
@@ -21,10 +21,10 @@ let currentScoreEl = document.querySelector("#current-score");
 let timeLeftEl = document.querySelector("#countdown");
 let timeLeftContainerEl = document.querySelector("#time-left-container");
 let questionEl = document.querySelector("#question");
-let option1El = document.querySelector("#pa1");
-let option2El = document.querySelector("#pa2");
-let option3El = document.querySelector("#pa3");
-let option4El = document.querySelector("#pa4");
+let option1El = document.querySelector("#a1");
+let option2El = document.querySelector("#a2");
+let option3El = document.querySelector("#a3");
+let option4El = document.querySelector("#a4");
 let startGamebtn = document.querySelector("#start-game-btn");
 let rightWrongEl = document.querySelector("#right-wrong");
 
@@ -46,7 +46,7 @@ if (currentScore === null) {
 
 // Set up a timer function 
 
-startGamebtn.addEventListener("click", function countdown() {
+function countdown() {
     var timeLeft = 10;
 
     // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
@@ -66,51 +66,102 @@ startGamebtn.addEventListener("click", function countdown() {
             timeLeftEl.textContent = '';
             // Use `clearInterval()` to stop the timer
             clearInterval(timeInterval);
-            alert("Game Over!")
+            //alert("Game Over!")
         }
     }, 1000);
-})
+};
 
 
 function startGame() {
     startGamebtn.addEventListener("click", function () {
         // hide the modal 
         modalEl.style.display = "none";
-        // update question if time left 
-        if (timeLeft > 0) {
-            for (var i = 0; i < questions.length; i++) {
-                //Display cureent question to answer
-                var answer = []
-                questionEl.textContent = questions[i].q;
-                option1El.textContent = questions[i].a;
-                option2El.textContent = questions[i].a;
-                option3El.textContent = questions[i].a;
-                option4El.textContent = questions[i].a;
 
+        countdown();
+
+        currentScore = 0;
+
+        // update question if time left 
+        for (var i = 0; i < questions.length; i++) {
+            //Display cureent question to answer
+            //var answer = []
+            questionEl.textContent = questions[i].q;
+            option1El.textContent = questions[i].a[0];
+            option2El.textContent = questions[i].a[1];
+            option3El.textContent = questions[i].a[2];
+            option4El.textContent = questions[i].a[3];
+
+            // listen for response 
+            option1El.addEventListener("click", function () {
                 if (
-                    (answer === questions[i].a)
+                    (this.textContent === option1El.textContent)
                 ) {
                     // Increase score
                     currentScore++;
                     // inform user in rightwrong div 
                     rightWrongEl.textContent = "Correct";
+                    // questionEl.textContent = questions[1].q;
 
-                    // save final score and scorer to local storage for next gaem
-                    localStorage.setItem("highscore", prompt("score"));
-                    localStorage.setItem("highscorer", prompt("enter name"));
                 } else {
                     rightWrongEl.textContent = "Wrong";
+                    // penalize 5 seconds for wrong answer 
                     timeLeft - 5;
                 }
-            }
-            // save final score and scorer to local storage for next gaem
-            // localStorage.setItem("highscore",prompt("score"));
-            // localStorage.setItem("highscorer", prompt("enter name"));
 
-        } else {
-            alert("Game Over")
+            })
+            option2El.addEventListener("click", function () {
+                if (
+                    (this.textContent === option1El.textContent)
+                ) {
+                    // Increase score
+                    currentScore++;
+                    // inform user in rightwrong div 
+                    rightWrongEl.textContent = "Correct";
+                } else {
+                    rightWrongEl.textContent = "Wrong";
+                    // penalize 5 seconds for wrong answer 
+                    timeLeft - 5;
+                }
+
+            })
+            option3El.addEventListener("click", function () {
+                if (
+                    (this.textContent === option1El.textContent)
+                ) {
+                    // Increase score
+                    currentScore++;
+                    // inform user in rightwrong div 
+                    rightWrongEl.textContent = "Correct";
+                } else {
+                    rightWrongEl.textContent = "Wrong";
+                    // penalize 5 seconds for wrong answer 
+                    timeLeft - 5;
+                }
+
+            })
+            option4El.addEventListener("click", function () {
+                if (
+                    (this.textContent === option1El.textContent)
+                ) {
+                    // Increase score
+                    currentScore++;
+                    // inform user in rightwrong div 
+                    rightWrongEl.textContent = "Correct";
+                } else {
+                    rightWrongEl.textContent = "Wrong";
+                    // penalize 5 seconds for wrong answer 
+                    timeLeft - 5;
+                }
+
+            })
+
         }
+        // save final score and scorer to local storage for next game
+        // localStorage.setItem("highscore",prompt("score"));
+        // localStorage.setItem("highscorer", prompt("enter name"));
+
     })
+
 };
-startGamebtn.addEventListener("click", startGame());
+startGame()
 
