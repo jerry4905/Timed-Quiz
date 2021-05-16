@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Quiz Time</title>
 
-    <link rel="stylesheet" href="./assets/css/style.css"/>
+    <title>Coding Quiz</title>
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
+
 <body>
     <header>
         <div id="logo-container">
@@ -16,8 +18,13 @@
         </div>
         <!-- Current Leader label-->
         <div id="current-leader-container">
-            <h2 >
+            <h2>
                 Current Leader: <span id="current-leader"></span>
+            </h2>
+        </div>
+        <div id="current-score-container">
+            <h2>
+                Current Score: <span id="current-score"></span>
             </h2>
         </div>
         <!-- High score label-->
@@ -25,22 +32,19 @@
             <div id="high-score-link">
                 <a href="#">View High Scores</a>
             </div>
-            <div id="current-score-container">
-                <h2>
-                    Current Score: <span id="current-score"></span>
-                </h2>
-            </div>
         </div>
     </header>
     <main>
         <!-- Start modal -->
         <div id="start-modal">
-            <h1> Coding quiz </h1>
+            <h1> Quiz Intro </h1>
             <p>Welcome to this timed coding quiz. When ready press start button to begin. </p>
-            <button id="start-game-btn"type="button">Start Quiz</button>
+            <button id="start-game-btn" type="button">Start Quiz</button>
         </div>
         <div id="time-left-container">
-            <div id="countdown"></div>
+            <h2>
+                Time:<span id="countdown"></span>
+            </h2>
         </div>
         <div id="question container">
             <div id="question"></div>
@@ -52,6 +56,7 @@
         </div>
         <script src="./assets/js/script.js"></script>
     </main>
-    
+
 </body>
+
 </html>
