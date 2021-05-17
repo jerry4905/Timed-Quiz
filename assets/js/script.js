@@ -1,5 +1,5 @@
 // global variables
-let timeLeft = 5;
+let timeLeft = 60;
 //Store questions and answers in object array
 var questions = [
     { q: "Inside which HTML element do we put the JavaScript?", a: ["<script>", "<HTML>", "<body>", "<insert>"] },
@@ -12,7 +12,7 @@ var questions = [
     { q: "How can you add a comment in a JavaScript?", a: ["//this will be a comment", "<!--this will be a comment-->", "*this will be a comment", "this will be a comment"] },
     { q: "JavaScript is the same as Java.", a: ["False", "true", "sometimes", "always"] },
     { q: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?", a: ["if(i !=5)", "while (i <= 10)", "for (i = 1)", "None"] },
-]
+];
 
 // capture DOM El 
 let modalEl = document.querySelector("#start-modal");
@@ -28,7 +28,7 @@ let option4El = document.querySelector("#a4");
 let startGamebtn = document.querySelector("#start-game-btn");
 let rightWrongEl = document.querySelector("#right-wrong");
 
-// local storgae 
+// local storgae access leader and score 
 let currentLeader = localStorage.getItem("highscorer");
 let currentScore = localStorage.getItem("highscore");
 
@@ -47,7 +47,7 @@ if (currentScore === null) {
 // Set up a timer function 
 
 function countdown() {
-    var timeLeft = 10;
+    var timeLeft = 60;
 
     // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     var timeInterval = setInterval(function () {
@@ -154,6 +154,8 @@ function startGame() {
                 }
 
             })
+
+            // once response selected it is checked for correctness then next question is presented 
 
         }
         // save final score and scorer to local storage for next game
