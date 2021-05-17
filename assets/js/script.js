@@ -66,7 +66,12 @@ function countdown() {
             timeLeftEl.textContent = '';
             // Use `clearInterval()` to stop the timer
             clearInterval(timeInterval);
-            //alert("Game Over!")
+            alert("Game Over!")
+
+            // save final score and scorer to local storage for next game
+            localStorage.setItem("highscore", prompt("score"));
+            localStorage.setItem("highscorer", prompt("enter name"));
+
         }
     }, 1000);
 };
@@ -122,7 +127,6 @@ function startGame() {
                     // penalize 5 seconds for wrong answer 
                     timeLeft - 5;
                 }
-
             })
             option3El.addEventListener("click", function () {
                 if (
@@ -137,7 +141,6 @@ function startGame() {
                     // penalize 5 seconds for wrong answer 
                     timeLeft - 5;
                 }
-
             })
             option4El.addEventListener("click", function () {
                 if (
@@ -152,16 +155,11 @@ function startGame() {
                     // penalize 5 seconds for wrong answer 
                     timeLeft - 5;
                 }
-
             })
-
             // once response selected it is checked for correctness then next question is presented 
 
-        }
-        // save final score and scorer to local storage for next game
-        // localStorage.setItem("highscore",prompt("score"));
-        // localStorage.setItem("highscorer", prompt("enter name"));
 
+        }
     })
 
 };
