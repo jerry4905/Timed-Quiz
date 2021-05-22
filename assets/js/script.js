@@ -14,6 +14,7 @@ var questions = [
     { q: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?", a: ["if(i !=5)", "while (i <= 10)", "for (i = 1)", "None"] },
 ];
 
+
 // capture DOM El 
 let modalEl = document.querySelector("#start-modal");
 let currentLeaderEl = document.querySelector("#current-leader");
@@ -69,8 +70,8 @@ function countdown() {
             alert("Game Over!")
 
             // save final score and scorer to local storage for next game
-            localStorage.setItem("highscore", prompt("score"));
-            localStorage.setItem("highscorer", prompt("enter name"));
+           // localStorage.setItem("highscore", prompt("score"));
+           // localStorage.setItem("highscorer", prompt("enter name"));
 
         }
     }, 1000);
@@ -84,84 +85,85 @@ function startGame() {
 
         countdown();
 
-        currentScore = 0;
+        currentScore = 0; 
+        questionList();    
 
-        // update question if time left 
-        for (var i = 0; i < questions.length; i++) {
-            //Display cureent question to answer
-            //var answer = []
-            questionEl.textContent = questions[i].q;
-            option1El.textContent = questions[i].a[0];
-            option2El.textContent = questions[i].a[1];
-            option3El.textContent = questions[i].a[2];
-            option4El.textContent = questions[i].a[3];
+});
+function questionList() {
+ // update question if time left 
+ for (var i = 0; i < questions.length; i++) {
+    //Display cureent question to answer
+    //var answer = []
+    questionEl.textContent = questions[i].q;
+    option1El.textContent = questions[i].a[0];
+    option2El.textContent = questions[i].a[1];
+    option3El.textContent = questions[i].a[2];
+    option4El.textContent = questions[i].a[3];
 
-            // listen for response 
-            option1El.addEventListener("click", function () {
-                if (
-                    (this.textContent === option1El.textContent)
-                ) {
-                    // Increase score
-                    currentScore++;
-                    // inform user in rightwrong div 
-                    rightWrongEl.textContent = "Correct";
-                    // questionEl.textContent = questions[1].q;
+    // listen for response 
+    option1El.addEventListener("click", function () {
+        if (
+            (this.textContent === option1El.textContent)
+        ) {
+            // Increase score
+            currentScore++;
+            // inform user in rightwrong div 
+            rightWrongEl.textContent = "Correct";
+            // questionEl.textContent = questions[1].q;
 
-                } else {
-                    rightWrongEl.textContent = "Wrong";
-                    // penalize 5 seconds for wrong answer 
-                    timeLeft - 5;
-                }
+        } else {
+            rightWrongEl.textContent = "Wrong";
+            // penalize 5 seconds for wrong answer 
+            timeLeft - 5;
+        }
 
-            })
-            option2El.addEventListener("click", function () {
-                if (
-                    (this.textContent === option1El.textContent)
-                ) {
-                    // Increase score
-                    currentScore++;
-                    // inform user in rightwrong div 
-                    rightWrongEl.textContent = "Correct";
-                } else {
-                    rightWrongEl.textContent = "Wrong";
-                    // penalize 5 seconds for wrong answer 
-                    timeLeft - 5;
-                }
-            })
-            option3El.addEventListener("click", function () {
-                if (
-                    (this.textContent === option1El.textContent)
-                ) {
-                    // Increase score
-                    currentScore++;
-                    // inform user in rightwrong div 
-                    rightWrongEl.textContent = "Correct";
-                } else {
-                    rightWrongEl.textContent = "Wrong";
-                    // penalize 5 seconds for wrong answer 
-                    timeLeft - 5;
-                }
-            })
-            option4El.addEventListener("click", function () {
-                if (
-                    (this.textContent === option1El.textContent)
-                ) {
-                    // Increase score
-                    currentScore++;
-                    // inform user in rightwrong div 
-                    rightWrongEl.textContent = "Correct";
-                } else {
-                    rightWrongEl.textContent = "Wrong";
-                    // penalize 5 seconds for wrong answer 
-                    timeLeft - 5;
-                }
-            })
-            // once response selected it is checked for correctness then next question is presented 
-
-
+    })
+    option2El.addEventListener("click", function () {
+        if (
+            (this.textContent === option1El.textContent)
+        ) {
+            // Increase score
+            currentScore++;
+            // inform user in rightwrong div 
+            rightWrongEl.textContent = "Correct";
+        } else {
+            rightWrongEl.textContent = "Wrong";
+            // penalize 5 seconds for wrong answer 
+            timeLeft - 5;
         }
     })
+    option3El.addEventListener("click", function () {
+        if (
+            (this.textContent === option1El.textContent)
+        ) {
+            // Increase score
+            currentScore++;
+            // inform user in rightwrong div 
+            rightWrongEl.textContent = "Correct";
+        } else {
+            rightWrongEl.textContent = "Wrong";
+            // penalize 5 seconds for wrong answer 
+            timeLeft - 5;
+        }
+    })
+    option4El.addEventListener("click", function () {
+        if (
+            (this.textContent === option1El.textContent)
+        ) {
+            // Increase score
+            currentScore++;
+            // inform user in rightwrong div 
+            rightWrongEl.textContent = "Correct";
+        } else {
+            rightWrongEl.textContent = "Wrong";
+            // penalize 5 seconds for wrong answer 
+            timeLeft - 5;
+        }
+    })
+    // once response selected it is checked for correctness then next question is presented 
 
-};
+
+}};
+}
 startGame()
 
