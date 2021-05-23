@@ -94,8 +94,11 @@ function countdown() {
             if (newScore > currentScore || currentScore === 'null') {
                 newHighScore();
             }
+            location.reload();
           }
+          
     }, 1000);
+    
 };
 
 function newHighScore(){
@@ -133,8 +136,8 @@ function display() {
 
 }
 
-//if (questionContainerEl.innerHTML === ''){
-//    alert("gameover")}
+if (questions[questionIndex].q > questions.length - 1){
+    alert("gameover")}
 
 };
 function checkAnswer() {
